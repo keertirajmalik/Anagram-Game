@@ -110,7 +110,7 @@ extension ViewController {
             return false
         }
         
-        if word == title {
+        if word.lowercased() == title {
             return false
         }
         
