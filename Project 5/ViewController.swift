@@ -62,9 +62,6 @@ extension ViewController {
     func submit(_ answer: String){
         let lowerAnswer = answer.lowercased()
         
-        let errorTitle: String
-        let errorMessage: String
-        
         if isPossible(word: lowerAnswer) {
             if isOriginal(word: lowerAnswer){
                 if isReal(word: lowerAnswer) {
@@ -74,19 +71,18 @@ extension ViewController {
                     tableView.insertRows(at: [indexPath], with: .automatic)
                     return
                 } else {
-                    errorTitle = "Word not recognised"
-                    errorMessage = "You can't just make them up, you know!"
+                    errorAlert(errorTitle: "Word not recognised", errorMessage: "You can't just make them up, you know!")
                 }
             } else {
-                errorTitle = "Word used already"
-                errorMessage = "Be more original"
+                errorAlert(errorTitle:"Word used already" , errorMessage: "Be more original")
             }
         } else {
             guard let title = title?.lowercased() else {return}
-            errorTitle = "Word not possible"
-            errorMessage = "You can't spell that word from \(title)"
+            errorAlert(errorTitle: "Word not possible", errorMessage: "You can't spell that word from \(title)")
         }
-        
+    }
+    
+    func errorAlert(errorTitle: String, errorMessage: String){
         let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
@@ -110,6 +106,7 @@ extension ViewController {
     }
     
     func isReal(word: String) -> Bool {
+        print(word.count)
         if word.count < 3 {
             return false
         }
