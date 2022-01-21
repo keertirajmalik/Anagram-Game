@@ -102,15 +102,15 @@ extension ViewController {
     }
     
     func isOriginal(word: String) -> Bool {
+        if word.lowercased() == title {
+            return false
+        }
+        
         return !usedWords.contains(word)
     }
     
     func isReal(word: String) -> Bool {
         if word.count < 3 {
-            return false
-        }
-        
-        if word.lowercased() == title {
             return false
         }
         
@@ -120,7 +120,5 @@ extension ViewController {
         
         return misspelledRange.location == NSNotFound
     }
-    
-    
 }
 
