@@ -106,10 +106,10 @@ extension ViewController {
     }
     
     func isReal(word: String) -> Bool {
-        print(word.count)
         if word.count < 3 {
             return false
         }
+        
         if word == title {
             return false
         }
